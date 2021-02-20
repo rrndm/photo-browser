@@ -1,23 +1,46 @@
 import logo from './logo.svg';
-import './App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+import List from './List.js'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#333333'
+    }
+  }
+});
+
+const useStyles = makeStyles((theme) => ({
+  spacer: {
+    height: theme.spacing(3)
+  }
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <AppBar position="relative">
+          <Toolbar>
+            <Typography variant="h6">Photo Browser</Typography>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.spacer}/>
+        <Container maxWidth="md">
+          <List/>
+        </Container>
+      </ThemeProvider>
     </div>
   );
 }
