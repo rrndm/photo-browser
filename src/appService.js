@@ -1,5 +1,5 @@
 //TODO move to .env
-const apiUrl = "http://jsonplaceholder.typicode.com"
+const apiUrl = "https://jsonplaceholder.typicode.com"
 
 
 export const getUsers = async () => {
