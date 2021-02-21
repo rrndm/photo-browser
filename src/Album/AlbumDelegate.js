@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 const useStyles = makeStyles((theme) => ({
 }));
 
-function User(props) {
+function AlbumDelegate(props) {
 
   const classes = useStyles();
 
@@ -18,22 +18,16 @@ function User(props) {
     <Card>
       <CardContent>
         <Typography variant="h6">
-          {props.username}
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          {props.name}
+          {props.title}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small" variant="outlined" color="primary">
-          More info
-        </Button>
-        <Button size="small" variant="outlined" color="primary">
-          Albums
+          Open
         </Button>
       </CardActions>
     </Card>
   );
 }
 
-export default User;
+export default AlbumDelegate;

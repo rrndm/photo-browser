@@ -1,26 +1,29 @@
-import logo from './logo.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-import List from './List.js'
+import Main from './Main.js'
+import Header from './Header.js'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#333333'
+    },
+    secondary: {
+      main: '#FFFFFF'
+    },
+    background: {
+      default: '#F0F0F0'
     }
   }
 });
 
 const useStyles = makeStyles((theme) => ({
   spacer: {
-    height: theme.spacing(3)
+    height: theme.spacing(2)
   }
 }));
 
@@ -29,16 +32,12 @@ function App() {
 
   return (
     <div>
-      <CssBaseline />
       <ThemeProvider theme={theme}>
-        <AppBar position="relative">
-          <Toolbar>
-            <Typography variant="h6">Photo Browser</Typography>
-          </Toolbar>
-        </AppBar>
+        <CssBaseline />
+        <Header/>
         <div className={classes.spacer}/>
         <Container maxWidth="md">
-          <List/>
+          <Main/>
         </Container>
       </ThemeProvider>
     </div>
