@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useParams} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -24,11 +24,12 @@ const AlbumList = () => {
 
   const {userId} = useParams()
 
-  if (albums.length === 0) {
-    getAlbums(userId)
-    .then((res) => res.json())
-    .then((jsonRes) => setAlbums(jsonRes))
-  }
+  useEffect(async () => {
+    const result = await getAlbums(userId)
+    const resultJson = await result.json()
+
+    setAlbums(resultJson);
+  }, [userId]);
 
   return (
     <React.Fragment>

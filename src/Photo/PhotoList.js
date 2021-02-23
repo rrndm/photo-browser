@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useParams} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -21,15 +22,18 @@ const PhotoList = () => {
 
   const [photos, setPhotos] = useState([])
 
-  if (photos.length === 0) {
-    getPhotos()
-    .then((res) => res.json())
-    .then((jsonRes) => setPhotos(jsonRes))
-  }
+  const {albumId} = useParams()
+
+  useEffect(async () => {
+    const result = await getPhotos(albumId)
+    const resultJson = await result.json()
+
+    setPhotos(resultJson);
+  }, [albumId]);
 
   return (
     <React.Fragment>
-      <Typography variant="h4">Photos</Typography>
+      <Typography variant="h4">Photos {albumId ? `of album ${albumId}` : ""}</Typography>
       <div className={classes.spacer}/>
       <PhotoDelegateList items={photos}/>
     </React.Fragment>

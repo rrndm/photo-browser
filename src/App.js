@@ -39,6 +39,7 @@ function App() {
         <Container maxWidth="md">
           <Main/>
         </Container>
+        <div className={classes.spacer}/>
       </ThemeProvider>
     </div>
   );

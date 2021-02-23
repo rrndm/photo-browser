@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -21,11 +21,12 @@ const UserList = () => {
 
   const [users, setUsers] = useState([])
 
-  if (users.length === 0) {
-    getUsers()
-    .then((res) => res.json())
-    .then((jsonRes) => setUsers(jsonRes))
-  }
+  useEffect(async () => {
+    const result = await getUsers()
+    const resultJson = await result.json()
+
+    setUsers(resultJson);
+  }, []);
 
   return (
     <React.Fragment>
