@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto"
   },
   initials: {
-    position: "absolute"
+    float: "left"
   },
   spacer: {
     height: theme.spacing(2),
@@ -74,7 +74,7 @@ function UserView() {
               <Typography align="center" variant="h4">
                 {user.username}
               </Typography>
-              <Typography align="center" variant="h6">
+              <Typography align="center" variant="h6" color="textSecondary">
                 {user.name}
               </Typography>
               <div className={classes.spacer}/>
