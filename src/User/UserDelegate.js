@@ -25,7 +25,7 @@ function UserDelegate(props) {
 
   return (
     <React.Fragment>
-      <Card>
+      <Card className={classes.card}>
         <Link to={`${match.path}/${props.id}`} className={classes.link}>
           <CardActionArea>
             <CardContent>

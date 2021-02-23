@@ -30,7 +30,7 @@ const UserList = () => {
 
   return (
     <React.Fragment>
-      <Typography variant="h4">Users</Typography>
+      <Typography align="center" variant="h4">Users</Typography>
       <div className={classes.spacer}/>
       <UserDelegateList items={users}/>
     </React.Fragment>

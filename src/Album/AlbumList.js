@@ -33,7 +33,7 @@ const AlbumList = () => {
 
   return (
     <React.Fragment>
-      <Typography variant="h4">Albums {userId ? `of user ${userId}` : ""}</Typography>
+      <Typography align="center" variant="h4">Albums {userId ? `of user ${userId}` : ""}</Typography>
       <div className={classes.spacer}/>
       <AlbumDelegateList items={albums}/>
     </React.Fragment>

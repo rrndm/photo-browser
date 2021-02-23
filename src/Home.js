@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     margin: 20
   },
+  icon: {
+    marginRight: 20
+  },
   link: {
     textDecoration: "none",
     color: "inherit"
@@ -33,7 +36,7 @@ function Home() {
 
   return (
     <React.Fragment>
-      <Typography align="center" variant="h2">
+      <Typography align="center" variant="h3" gutterBottom>
         Welcome to Photo Browser app
       </Typography>
       <div className={classes.spacer}/>
@@ -41,7 +44,7 @@ function Home() {
         <Link to={'/users'} className={classes.link}>
           <CardActionArea>
             <div className={classes.cardFlex}>
-              <PersonIcon fontSize="large"/>
+              <PersonIcon fontSize="large" className={classes.icon}/>
               <Typography variant="h5">View a list of users with albums.</Typography>
             </div>
           </CardActionArea>
@@ -52,7 +55,7 @@ function Home() {
         <Link to={'/albums'} className={classes.link}>
           <CardActionArea>
             <div className={classes.cardFlex}>
-              <PhotoLibraryIcon fontSize="large"/>
+              <PhotoLibraryIcon fontSize="large" className={classes.icon}/>
               <Typography variant="h5">View a list of all albums from various users.</Typography>
             </div>
           </CardActionArea>
@@ -63,7 +66,7 @@ function Home() {
         <Link to={'/photos'} className={classes.link}>
           <CardActionArea>
             <div className={classes.cardFlex}>
-              <PhotoIcon fontSize="large"/>
+              <PhotoIcon fontSize="large" className={classes.icon}/>
               <Typography variant="h5">View a list of photos from all albums.</Typography>
             </div>
           </CardActionArea>

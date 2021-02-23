@@ -33,7 +33,7 @@ const PhotoList = () => {
 
   return (
     <React.Fragment>
-      <Typography variant="h4">Photos {albumId ? `of album ${albumId}` : ""}</Typography>
+      <Typography align="center" variant="h4">Photos {albumId ? `of album ${albumId}` : ""}</Typography>
       <div className={classes.spacer}/>
       <PhotoDelegateList items={photos}/>
     </React.Fragment>
