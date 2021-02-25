@@ -1,6 +1,10 @@
-//TODO move to .env
 const apiUrl = "https://jsonplaceholder.typicode.com"
 
+export const doGet = async (path, id, params) => {
+  if (id)
+    path = path + '/' + id
+  return await fetch(`${apiUrl}/${path}?${new URLSearchParams(params)}`)
+}
 
 export const getUsers = async () => {
   return await doRequest("users")
@@ -17,12 +21,13 @@ export const getAlbums = async (userId) => {
   return await doRequest("albums", params)
 }
 
-export const getPhotos = async (albumId) => {
+export const getPhotos = async (albumId, page) => {
   let params = {}
-  params._limit = 50 //temp
+  params._page = page
+  params._limit = 20
   if (albumId)
     params.albumId = albumId
-  return await doRequest("photos", params) //temp
+  return await doRequest("photos", params)
 }
 
 export const getPhoto = async (photoId) => {

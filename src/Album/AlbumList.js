@@ -5,38 +5,42 @@ import Typography from '@material-ui/core/Typography';
 
 import AlbumDelegate from './AlbumDelegate.js'
 import ToList from '../ToList.js'
+import WithLoading from '../WithLoading.js'
 
 import { getAlbums } from '../appService.js'
 
 const AlbumDelegateList = ToList(AlbumDelegate)
-
-const useStyles = makeStyles((theme) => ({
-  spacer: {
-    height: theme.spacing(2)
-  }
-}));
+const AlbumDelegateListWithLoading = WithLoading(AlbumDelegateList)
 
 const AlbumList = () => {
 
-  const classes = useStyles();
-
   const [albums, setAlbums] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [errored, setErrored] = useState(false)
 
   const {userId} = useParams()
 
-  useEffect(async () => {
-    const result = await getAlbums(userId)
-    const resultJson = await result.json()
+  const titleText = userId ? `Albums of user ${userId}` : "Albums"
 
-    setAlbums(resultJson);
+  useEffect(async () => {
+    setLoading(true)
+    try {
+      const result = await getAlbums(userId)
+      if (result.status >= 400 && result.status < 600)
+        throw new Error()
+      const resultJson = await result.json()
+      setAlbums(resultJson);
+    }
+    catch(e) {
+      setErrored(true)
+    }
+    finally {
+      setLoading(false)
+    }
   }, [userId]);
 
   return (
-    <React.Fragment>
-      <Typography align="center" variant="h4">Albums {userId ? `of user ${userId}` : ""}</Typography>
-      <div className={classes.spacer}/>
-      <AlbumDelegateList items={albums}/>
-    </React.Fragment>
+    <AlbumDelegateListWithLoading loading={loading} errored={errored} titleText={titleText} items={albums}/>
   );
 }
 

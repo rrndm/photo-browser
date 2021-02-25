@@ -4,36 +4,40 @@ import Typography from '@material-ui/core/Typography';
 
 import UserDelegate from './UserDelegate.js'
 import ToList from '../ToList.js'
+import WithLoading from '../WithLoading.js'
 
 import { getUsers } from '../appService.js'
 
 const UserDelegateList = ToList(UserDelegate)
-
-const useStyles = makeStyles((theme) => ({
-  spacer: {
-    height: theme.spacing(2)
-  }
-}));
+const UserDelegateListWithLoading = WithLoading(UserDelegateList)
 
 const UserList = () => {
 
-  const classes = useStyles();
-
   const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [errored, setErrored] = useState(false)
+
+  const titleText="Users"
 
   useEffect(async () => {
-    const result = await getUsers()
-    const resultJson = await result.json()
-
-    setUsers(resultJson);
+    setLoading(true)
+    try {
+      const result = await getUsers()
+      if (result.status >= 400 && result.status < 600)
+        throw new Error()
+      const resultJson = await result.json()
+      setUsers(resultJson);
+    }
+    catch(e) {
+      setErrored(true)
+    }
+    finally {
+      setLoading(false)
+    }
   }, []);
 
   return (
-    <React.Fragment>
-      <Typography align="center" variant="h4">Users</Typography>
-      <div className={classes.spacer}/>
-      <UserDelegateList items={users}/>
-    </React.Fragment>
+    <UserDelegateListWithLoading loading={loading} errored={errored} titleText={titleText} items={users}/>
   );
 }
 

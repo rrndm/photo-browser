@@ -25,23 +25,38 @@ const useStyles = makeStyles((theme) => ({
 function PhotoView() {
 
   const [photo, setPhoto] = useState()
+  const [loading, setLoading] = useState(true)
+  const [errored, setErrored] = useState(false)
 
   const classes = useStyles();
 
   const {photoId} = useParams()
 
   useEffect(async () => {
-    const result = await getPhoto(photoId)
-    const resultJson = await result.json()
-
-    setPhoto(resultJson);
+    setLoading(true)
+    try {
+      const result = await getPhoto(photoId)
+      if (result.status >= 400 && result.status < 600)
+        throw new Error()
+      const resultJson = await result.json()
+      setPhoto(resultJson);
+    }
+    catch(e) {
+      setErrored(true)
+    }
+    finally {
+      setLoading(false)
+    }
   }, [photoId]);
 
   return (
     <React.Fragment>
-      {
-        photo
-        ? <Card className={classes.card}>
+    {
+      loading
+      ? <Typography align="center" variant="h3">Loading...</Typography>
+      : errored
+        ? <Typography align="center" variant="h3">Error while fetching resource!</Typography>
+        : <Card className={classes.card}>
             <CardMedia>
               <img className={classes.media} src={photo.url}/>
             </CardMedia>
@@ -54,8 +69,7 @@ function PhotoView() {
               </Typography>
             </CardContent>
           </Card>
-        : null
-      }
+    }
     </React.Fragment>
   );
 }

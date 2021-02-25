@@ -48,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 function UserView() {
 
   const [user, setUser] = useState()
+  const [loading, setLoading] = useState(true)
+  const [errored, setErrored] = useState(false)
 
   const classes = useStyles();
 
@@ -55,17 +57,31 @@ function UserView() {
   const match = useRouteMatch()
 
   useEffect(async () => {
-    const result = await getUser(userId)
-    const resultJson = await result.json()
-
-    setUser(resultJson);
+    setLoading(true)
+    try {
+      const result = await getUser(userId)
+      console.log(result)
+      if (result.status >= 400 && result.status < 600)
+        throw new Error()
+      const resultJson = await result.json()
+      setUser(resultJson);
+    }
+    catch(e) {
+      setErrored(true)
+    }
+    finally {
+      setLoading(false)
+    }
   }, [userId]);
 
   return (
     <React.Fragment>
-      {
-        user
-        ? <Card className={classes.card}>
+    {
+      loading
+      ? <Typography align="center" variant="h3">Loading...</Typography>
+      : errored
+        ? <Typography align="center" variant="h3">Error while fetching resource!</Typography>
+        : <Card className={classes.card}>
             <CardContent className={classes.content}>
               <Typography variant="h1" className={classes.initials}>
                 {user.name.charAt(0)}{user.name.split(' ')[1].charAt(0)}
@@ -113,8 +129,7 @@ function UserView() {
               </Link>
             </CardActions>
           </Card>
-        : null
-      }
+    }
     </React.Fragment>
   );
 }
