@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/photo-browser/static/js/main.93df4850.chunk.js",
-    "main.js.map": "/photo-browser/static/js/main.93df4850.chunk.js.map",
+    "main.js": "/photo-browser/static/js/main.2ef3fbca.chunk.js",
+    "main.js.map": "/photo-browser/static/js/main.2ef3fbca.chunk.js.map",
     "runtime-main.js": "/photo-browser/static/js/runtime-main.b2ee711d.js",
     "runtime-main.js.map": "/photo-browser/static/js/runtime-main.b2ee711d.js.map",
-    "static/js/2.d7e23561.chunk.js": "/photo-browser/static/js/2.d7e23561.chunk.js",
-    "static/js/2.d7e23561.chunk.js.map": "/photo-browser/static/js/2.d7e23561.chunk.js.map",
+    "static/js/2.b1ab0b7a.chunk.js": "/photo-browser/static/js/2.b1ab0b7a.chunk.js",
+    "static/js/2.b1ab0b7a.chunk.js.map": "/photo-browser/static/js/2.b1ab0b7a.chunk.js.map",
     "static/js/3.f0db86b3.chunk.js": "/photo-browser/static/js/3.f0db86b3.chunk.js",
     "static/js/3.f0db86b3.chunk.js.map": "/photo-browser/static/js/3.f0db86b3.chunk.js.map",
     "index.html": "/photo-browser/index.html",
-    "static/js/2.d7e23561.chunk.js.LICENSE.txt": "/photo-browser/static/js/2.d7e23561.chunk.js.LICENSE.txt"
+    "static/js/2.b1ab0b7a.chunk.js.LICENSE.txt": "/photo-browser/static/js/2.b1ab0b7a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b2ee711d.js",
-    "static/js/2.d7e23561.chunk.js",
-    "static/js/main.93df4850.chunk.js"
+    "static/js/2.b1ab0b7a.chunk.js",
+    "static/js/main.2ef3fbca.chunk.js"
   ]
 }
